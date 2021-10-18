@@ -1,2 +1,3 @@
 # xjot
-XJot is a sparse, a bit more human-readable representation of XML
+
+XJot is a sparse representation of XML that requires less typing and squinting than regular XML.
