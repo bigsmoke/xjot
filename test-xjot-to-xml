@@ -1,0 +1,21 @@
+#!/bin/bash
+
+run-tests() {
+    for xjot_file in tests/*.xjot; do
+        xml_file="${xjot_file%.xjot}.xml"
+        diff "$xml_file" <(./xjot-to-xml < $xjot_file)
+    done
+}
+
+loop-tests() {
+    fswatch --event Created --event Removed --event Updated -0 . | xargs -0 -n 1 $0
+}
+
+if [[ "$1" == "--loop" ]]; then
+    run-tests
+    loop-tests
+else
+    run-tests
+fi
+
+# vim: set expandtab shiftwidth=4 tabstop=4:

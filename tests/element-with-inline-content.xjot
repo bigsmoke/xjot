@@ -1,0 +1,5 @@
+<root-element/
+  <child-el/ Content A
+  <child-el/ Content B
+  <child-el/ Content C
+/root-element>
