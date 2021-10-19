@@ -1,5 +1,5 @@
 xjot-to-xml: xjot_to_xml.c
-	gcc -o $@ $^
+	gcc -g -o $@ $^
 
 .PHONY: loop
 loop:
