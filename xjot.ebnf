@@ -1,0 +1,16 @@
+(* Processing instructions retain the exact same syntax in XJot as in regular XML. *)
+PI = '<?', PITarget, S, [Char* - (Char*, "?>", Char*)], '?>';
+PITarget = Name - (('X' | 'x') ('M' | 'm') ('L' | 'l'));
+
+(* CDATA sections, for now, also retain their XML syntax. *)
+CDSect = CDStart, CData, CDEnd;
+CDStart = '<![CDATA[';
+CData = Char* - (Char*, ']]>', Char*);
+CDEnd = ']]>';
+
+(* Instead of an XML declaration, XJot documents have an … XJot declaration. *)
+XJotDecl = '<?xjot', XJotVersionInfo, [EncodingDecl], [SDDecl], [S], '?>';
+SDDecl = [S], 'standalone', Eq, ("'", 'yes' | 'no', "'" | '"', 'yes' | 'no', '"');
+XJotVersionInfo = S, 'version', Eq, ("'", XjotVersionNum, "'" | '"', XjotVersionNum, '"');
+Eq = [S], '=', [S];
+XjotVersionNum = '1.', [0-9], {[0-9]};
