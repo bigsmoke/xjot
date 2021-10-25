@@ -14,3 +14,10 @@ SDDecl = [S], 'standalone', Eq, ("'", 'yes' | 'no', "'" | '"', 'yes' | 'no', '"'
 XJotVersionInfo = S, 'version', Eq, ("'", XjotVersionNum, "'" | '"', XjotVersionNum, '"');
 Eq = [S], '=', [S];
 XjotVersionNum = '1.', [0-9], {[0-9]};
+
+XJotElement = XJotEmptyElemTag
+              | XJotSTag, content, XJotETag;
+XJotSingleLineElement = {S}, ;
+XJotInlineElement = ;
+XJotAbbrETag = '/>';
+XJotMultilineElement = ;
